@@ -25,7 +25,8 @@ pub fn wrap(sender: Addr, funds: Vec<Coin>) -> Result<Response, ContractError> {
 }
 
 pub fn unwrap(self_addr: Addr, sender: Addr, funds: Vec<Coin>) -> Result<Response, ContractError> {
-    // TODO: change this to a BankMsg
+    // TODO: change this to a BankMsg::Send once support for it is implemented
+    // in cw-sdk state machine
     let send_msg = WasmMsg::Execute {
         contract_addr: "bank".into(),
         msg: to_binary(&bank::ExecuteMsg::Send {
