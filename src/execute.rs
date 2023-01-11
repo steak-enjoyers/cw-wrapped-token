@@ -69,12 +69,14 @@ fn subdenom_of(denom: &str) -> Result<String, ContractError> {
     let Some((namespace, subdenom)) = denom.split_once('/') else {
         return Err(ContractError::NotWrappedToken {
             denom: denom.into(),
+            reason: format!("the denom is not in {NAMESPACE}/{{subdenom}} format"),
         });
     };
 
     if namespace != NAMESPACE {
         return Err(ContractError::NotWrappedToken {
             denom: denom.into(),
+            reason: format!("the namespace is not `{NAMESPACE}`"),
         });
     }
 

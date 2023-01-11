@@ -9,8 +9,9 @@ pub enum ContractError {
     #[error("Query entry point is unsupported")]
     QueryUnsupported,
 
-    #[error("Denom `{denom}` does not represent a wrapped token")]
+    #[error("Denom `{denom}` does not represent a wrapped token: {reason}")]
     NotWrappedToken {
         denom: String,
+        reason: String,
     }
 }
